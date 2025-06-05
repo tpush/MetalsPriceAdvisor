@@ -1,0 +1,9 @@
+requests
+beautifulsoup4
+fastapi
+uvicorn
+numpy
+tensorflow
+joblib
+pydantic
+scikit-learn 

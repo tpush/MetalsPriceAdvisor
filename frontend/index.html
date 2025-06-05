@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Сайт</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- PyScript CSS -->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- PyScript JS -->
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+</head>
+<body>
+    <h1>Актуальные цены на драгоценные металлы</h1>
+
+    <table id="metals-table">
+        <thead>
+            <tr>
+                <th>Название металла</th>
+                <th>Цена</th>
+                <th>Единица</th>
+                <th>Дата</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Сюда PyScript будет добавлять строки с данными -->
+        </tbody>
+    </table>
+
+    <p class="data-source-disclaimer">Данные взяты из Центробанка*</p>
+
+    <hr class="separator">
+
+    <h2>Исторические данные по ценам на металлы</h2>
+
+    <div class="filter-container">
+        <label for="metal-select">Выберите металл:</label>
+        <select id="metal-select">
+            <option value="Золото">Золото</option>
+            <option value="Серебро">Серебро</option>
+            <option value="Платина">Платина</option>
+            <option value="Палладий">Палладий</option>
+        </select>
+        <label for="date-select" style="margin-left: 20px;">Выберите дату:</label>
+        <input type="date" id="date-select" value="2025-05-23">
+    </div>
+
+    <table id="historical-metals-table">
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Цена (руб./грамм)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Сюда PyScript будет добавлять строки с историческими данными -->
+        </tbody>
+    </table>
+
+    <hr class="separator">
+
+    <h2>График изменения цен на металлы</h2>
+
+    <div class="filter-container" id="chart-filter-container">
+        <label for="chart-metal-select">Металл:</label>
+        <select id="chart-metal-select">
+            <option value="Золото">Золото</option>
+            <option value="Серебро">Серебро</option>
+            <option value="Платина">Платина</option>
+            <option value="Палладий">Палладий</option>
+        </select>
+
+        <label for="chart-date-start" style="margin-left: 15px;">С даты:</label>
+        <input type="date" id="chart-date-start" value="2024-12-12">
+
+        <label for="chart-date-end" style="margin-left: 15px;">По дату:</label>
+        <input type="date" id="chart-date-end" value="2025-01-01">
+
+        <button id="update-chart-button" style="margin-left: 20px;">Показать график</button>
+    </div>
+
+    <div class="chart-container" style="width: 80%; margin: 30px auto; background-color: #fff; padding:20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <canvas id="metalsPriceChart"></canvas>
+    </div>
+    <div id="chart-error-container" style="text-align: center; margin-top: 10px;"></div>
+
+    <!-- AI Forecast Section -->
+    <hr class="separator">
+    <h2>AI Прогноз и рекомендация</h2>
+    <div class="metal-card forecast-card">
+        <div class="metal-header">
+            <h3>Золото <span id="current-price">8338.21 руб</span></h3>
+        </div>
+        <div class="recommendation-box">
+            <div class="recommendation-header">
+                <span>Рекомендация: <strong id="recommendation-action">SELL</strong></span>
+                <span>Уверенность: <strong id="recommendation-confidence">50%</strong></span>
+            </div>
+            <div class="indicator-info" id="ema-info">
+                EMA7 < EMA21 на 40.85
+            </div>
+        </div>
+        <div class="chart-container forecast-chart">
+            <canvas id="ai-forecast-chart"></canvas>
+        </div>
+        <div class="controls">
+            <select id="forecast-metal-select">
+                <option value="Au">Золото</option>
+                <option value="Ag">Серебро</option>
+                <option value="Pt">Платина</option>
+                <option value="Pd">Палладий</option>
+            </select>
+            <button id="get-forecast-btn">Показать прогноз</button>
+        </div>
+    </div>
+    <!-- End AI Forecast Section -->
+
+    <!-- Подключаем наши Python скрипты -->
+    <py-config>
+        packages = ["numpy"]
+        [[fetch]]
+        files = ["./main.py", "./tabl1.py", "./tabl2.py", "./grafik.py", "./ai_forecast.py"]
+    </py-config>
+
+    <py-script>
+        from pyscript import document
+        import asyncio
+        
+        async def init():
+            # Импортируем модули
+            import ai_forecast
+            import main
+            
+            # Ждем небольшую паузу, чтобы DOM полностью загрузился
+            await asyncio.sleep(0.5)
+            
+            # Инициализируем обработчики событий
+            ai_forecast.bind_event_handlers()
+        
+        # Запускаем инициализацию
+        asyncio.ensure_future(init())
+    </py-script>
+</body>
+</html> 

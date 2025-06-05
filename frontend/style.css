@@ -1,0 +1,220 @@
+body {
+    font-family: sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+h1 {
+    color: #0056b3;
+    text-align: center;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Стили для таблицы */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #f5f5dc;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #e9e9d0;
+    color: #333;
+}
+
+/* Стили для надписи об источнике данных */
+.data-source-disclaimer {
+    text-align: center;
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 15px;
+}
+
+/* Разделитель между таблицами */
+.separator {
+    border: 0;
+    height: 1px;
+    background: #ddd;
+    margin: 40px 0;
+}
+
+/* Контейнер для фильтров */
+.filter-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.filter-container label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.filter-container select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+/* Стили для второй (исторической) таблицы, если нужны специфичные */
+#historical-metals-table {
+    width: 60%; /* Например, сделаем ее немного уже */
+    /* Можно добавить другие специфичные стили или наследовать общие */
+}
+
+/* Стили для контейнера фильтров графика */
+#chart-filter-container label {
+    margin-right: 5px; /* Уменьшим отступ для более компактного вида */
+}
+
+#chart-filter-container select,
+#chart-filter-container input[type="date"] {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-right: 10px; /* Отступ между элементами фильтра */
+}
+
+#chart-filter-container button {
+    padding: 8px 15px;
+}
+
+/* Контейнер для самого графика (уже частично задан inline) */
+.chart-container {
+    /* Можно добавить высоту, если maintainAspectRatio: false у графика */
+    height: 400px; /* Задаем явную высоту */
+    width: 80%; /* Убедимся, что ширина тоже есть в CSS */
+    margin: 30px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#metalsPriceChart {
+    width: 100% !important; /* !important чтобы переопределить возможные inline стили от Chart.js */
+    height: 100% !important;
+}
+
+/* Стили для секции AI прогноза */
+.forecast-card {
+    width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.metal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.metal-header h3 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.5em;
+}
+
+#current-price {
+    color: #7f8c8d;
+    font-size: 0.8em;
+    margin-left: 10px;
+}
+
+.recommendation-box {
+    background-color: #fff5f5;
+    border-left: 4px solid #e53e3e;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.recommendation-box.BUY {
+    background-color: #f0fff4;
+    border-left-color: #48bb78;
+}
+
+.recommendation-box.SELL {
+    background-color: #fff5f5;
+    border-left-color: #e53e3e;
+}
+
+.recommendation-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.recommendation-header strong {
+    color: #e53e3e;
+}
+
+.recommendation-box.BUY .recommendation-header strong {
+    color: #48bb78;
+}
+
+.indicator-info {
+    color: #4a5568;
+    font-size: 0.9em;
+}
+
+.forecast-chart {
+    height: 250px;
+    margin: 20px 0;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+#forecast-metal-select {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    background-color: white;
+}
+
+#get-forecast-btn {
+    padding: 8px 16px;
+    background-color: #4299e1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#get-forecast-btn:hover {
+    background-color: #3182ce;
+}
+
+#get-forecast-btn:active {
+    background-color: #2c5282;
+} 
